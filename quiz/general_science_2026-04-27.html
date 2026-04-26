@@ -126,8 +126,8 @@ body{font-family:'Noto Sans Devanagari','Sora',sans-serif;background:var(--paper
       </div>
     </div>
     <div class="quiz-meta-strip">
-      <div class="qm-title">🧠 <span id="quizTopicLabel">%%TOPIC%%</span></div>
-      <div class="quiz-date-pill" id="quizDateLabel">%%DATE%%</div>
+      <div class="qm-title">🧠 <span id="quizTopicLabel">General Science / सामान्य विज्ञान</span></div>
+      <div class="quiz-date-pill" id="quizDateLabel">26 April 2026</div>
     </div>
   </div>
   <div class="ticker">
@@ -154,13 +154,13 @@ body{font-family:'Noto Sans Devanagari','Sora',sans-serif;background:var(--paper
   <div class="quiz-widget">
     <div class="quiz-widget-header">
       <div class="quiz-title-row">
-        <span class="quiz-icon" id="quizIcon">%%ICON%%</span>
-        <span class="quiz-name" id="quizName">%%TOPIC%%</span>
+        <span class="quiz-icon" id="quizIcon">🔬</span>
+        <span class="quiz-name" id="quizName">General Science / सामान्य विज्ञान</span>
       </div>
-      <span class="quiz-counter" id="quizCounter">1 / %%TOTAL%%</span>
+      <span class="quiz-counter" id="quizCounter">1 / 5</span>
     </div>
     <div class="quiz-progress-bar">
-      <div class="quiz-progress-fill" id="quizProgress" style="width:%%FIRST_PCT%%%;"></div>
+      <div class="quiz-progress-fill" id="quizProgress" style="width:20%;"></div>
     </div>
 
     <div class="quiz-body" id="quizMain">
@@ -175,7 +175,7 @@ body{font-family:'Noto Sans Devanagari','Sora',sans-serif;background:var(--paper
 
     <div class="quiz-result" id="quizResult">
       <div class="result-trophy" id="resultTrophy">🏆</div>
-      <div class="score-big" id="scoreNum">0/%%TOTAL%%</div>
+      <div class="score-big" id="scoreNum">0/5</div>
       <div class="score-label">आपका स्कोर</div>
       <div class="result-msg" id="resultMsg"></div>
       <div class="result-actions">
@@ -209,8 +209,64 @@ body{font-family:'Noto Sans Devanagari','Sora',sans-serif;background:var(--paper
 </div>
 
 <script>
-const QUIZ_META = {"topic": "General Science", "date": "27 Apr 2026", "total": 0, "icon": "🧠"};
-const QUESTIONS = [];
+const QUIZ_META = {"topic": "General Science / सामान्य विज्ञान", "icon": "🔬", "date": "26 April 2026"};
+const QUESTIONS = [
+  {
+    "q": "Which planet is called the 'Red Planet'? / किस ग्रह को 'लाल ग्रह' कहा जाता है?",
+    "opts": [
+      "Venus / शुक्र",
+      "Jupiter / बृहस्पति",
+      "Mars / मंगल",
+      "the 'Red Planet'? / किस ग्रह को 'लाल ग्रह' कहा जाता है? A) Venus / शुक्र B) Jupiter / बृहस्पति C) Mars / मंगल D) Saturn / शनि"
+    ],
+    "ans": 2,
+    "explain": "Mars is called the 'Red Planet' because of iron oxide (rust) on its surface. / मंगल को 'लाल ग्रह' कहा जाता है क्योंकि इसकी सतह पर आयरन ऑक्साइड है।"
+  },
+  {
+    "q": "What is the chemical formula of water? / पानी का रासायनिक सूत्र क्या है?",
+    "opts": [
+      "of water? / पानी का रासायनिक सूत्र क्या है? A) CO₂",
+      "H₂O",
+      "O₂",
+      "NaCl"
+    ],
+    "ans": 1,
+    "explain": "Water is made of two hydrogen and one oxygen atom — H₂O. / पानी दो हाइड्रोजन और एक ऑक्सीजन परमाणु से बनता है।"
+  },
+  {
+    "q": "Which gas do plants absorb during photosynthesis? / प्रकाश संश्लेषण में पौधे कौन सी गैस अवशोषित करते हैं?",
+    "opts": [
+      "Oxygen / ऑक्सीजन",
+      "during photosynthesis? / प्रकाश संश्लेषण में पौधे कौन सी गैस अवशोषित करते हैं? A) Oxygen / ऑक्सीजन B) Nitrogen / नाइट्रोजन",
+      "Carbon Dioxide / कार्बन डाईऑक्साइड",
+      "Hydrogen / हाइड्रोजन"
+    ],
+    "ans": 2,
+    "explain": "In photosynthesis, plants convert CO₂ and water into glucose and oxygen using sunlight. / प्रकाश संश्लेषण में पौधे CO₂ और पानी को ग्लूकोज और ऑक्सीजन में बदलते हैं।"
+  },
+  {
+    "q": "What is the SI unit of electric current? / विद्युत धारा का SI मात्रक क्या है?",
+    "opts": [
+      "Volt / वोल्ट",
+      "Watt / वाट",
+      "current? / विद्युत धारा का SI मात्रक क्या है? A) Volt / वोल्ट B) Watt / वाट C) Ampere / एम्पीयर",
+      "Ohm / ओम"
+    ],
+    "ans": 2,
+    "explain": "The SI unit of electric current is Ampere (A), named after André-Marie Ampère. / विद्युत धारा का SI मात्रक एम्पीयर है।"
+  },
+  {
+    "q": "Which organelle is called the 'Powerhouse of the Cell'? / कोशिका का 'शक्ति-केंद्र' किस अंगक को कहते हैं?",
+    "opts": [
+      "Nucleus / केंद्रक",
+      "Ribosome / राइबोसोम",
+      "Mitochondria / माइटोकॉन्ड्रिया",
+      "the 'Powerhouse of the Cell'? / कोशिका का 'शक्ति-केंद्र' किस अंगक को कहते हैं? A) Nucleus / केंद्रक B) Ribosome / राइबोसोम C) Mitochondria / माइटोकॉन्ड्रिया D) Golgi Body / गॉल्जी काय"
+    ],
+    "ans": 2,
+    "explain": "Mitochondria produces ATP energy through cellular respiration. / माइटोकॉन्ड्रिया कोशिकीय श्वसन द्वारा ATP ऊर्जा उत्पन्न करता है।"
+  }
+];
 
 let currentQ = 0, score = 0, answered = false;
 const letters = ['A','B','C','D'];
