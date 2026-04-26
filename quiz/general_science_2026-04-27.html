@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Daily Quiz – Global World Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ink:#0b1929;--paper:#f7f9fc;--white:#ffffff;--navy:#0b2d5e;
+  --blue:#1155cc;--blue-lt:#e8f0fe;--green:#1a8f3c;--green-lt:#e6f4ea;
+  --gold:#e8a020;--gold-lt:#fef7e0;--red:#c0311a;--red-lt:#fde8e4;
+  --muted:#6b7a99;--border:#e2e8f0;
+  --shadow:0 8px 40px rgba(11,29,41,.12);--shadow-lg:0 20px 60px rgba(11,29,41,.16);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans Devanagari','Sora',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden;min-height:100vh;}
+::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--paper);}::-webkit-scrollbar-thumb{background:var(--blue);border-radius:4px;}
+.top-banner{background:linear-gradient(135deg,var(--navy) 0%,#0d2550 100%);position:relative;overflow:hidden;}
+.top-banner::before{content:'';position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:rgba(17,85,204,.2);pointer-events:none;}
+.top-banner::after{content:'';position:absolute;bottom:-40px;left:-40px;width:200px;height:200px;border-radius:50%;background:rgba(232,160,32,.1);pointer-events:none;}
+.banner-inner{max-width:720px;margin:0 auto;padding:28px 24px 22px;position:relative;z-index:1;}
+.brand-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.brand-left{display:flex;align-items:center;gap:14px;}
+.logo-mark{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--navy),var(--blue));border:2px solid rgba(232,160,32,.5);display:grid;place-items:center;font-size:18px;font-weight:800;color:var(--gold);letter-spacing:.5px;flex-shrink:0;font-family:'Sora',sans-serif;}
+.brand-name{font-size:18px;font-weight:800;color:#fff;line-height:1.2;font-family:'Sora',sans-serif;}
+.brand-name span{color:var(--gold);}
+.brand-tagline{font-size:11px;color:rgba(255,255,255,.5);margin-top:3px;font-weight:400;font-family:'Sora',sans-serif;}
+.brand-links{display:flex;gap:8px;flex-wrap:wrap;}
+.hdr-link{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:50px;font-size:12px;font-weight:700;text-decoration:none;transition:transform .18s;white-space:nowrap;font-family:'Sora',sans-serif;}
+.hdr-link:hover{transform:translateY(-2px);}
+.link-yt{background:#ff0000;color:#fff;box-shadow:0 4px 16px rgba(255,0,0,.3);}
+.link-course{background:var(--gold);color:var(--navy);box-shadow:0 4px 16px rgba(232,160,32,.3);}
+.quiz-meta-strip{margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.qm-title{font-size:15px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px;}
+.quiz-date-pill{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:rgba(255,255,255,.55);background:rgba(255,255,255,.08);border-radius:50px;padding:5px 14px;border:1px solid rgba(255,255,255,.1);}
+.ticker{background:rgba(0,0,0,.25);padding:10px 0;overflow:hidden;}
+.ticker-inner{display:flex;white-space:nowrap;animation:ticker 22s linear infinite;}
+@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.ticker-item{display:inline-flex;align-items:center;gap:8px;padding:0 28px;font-size:12px;font-weight:600;color:rgba(255,255,255,.6);border-right:1px solid rgba(255,255,255,.1);}
+.ticker-item .dot{color:var(--gold);}
+.main{max-width:720px;margin:0 auto;padding:32px 20px 48px;}
+.quiz-widget{background:#fff;border-radius:24px;box-shadow:var(--shadow-lg);overflow:hidden;}
+.quiz-widget-header{padding:24px 28px 0;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.quiz-title-row{display:flex;align-items:center;gap:10px;}
+.quiz-icon{font-size:22px;}
+.quiz-name{font-size:17px;font-weight:700;color:var(--navy);}
+.quiz-counter{font-family:'DM Mono',monospace;font-size:13px;font-weight:600;color:var(--blue);background:var(--blue-lt);border-radius:50px;padding:5px 14px;}
+.quiz-progress-bar{height:5px;background:var(--border);margin:0 0 28px;}
+.quiz-progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),#4285f4);transition:width .45s ease;}
+.quiz-body{padding:0 28px 28px;}
+.quiz-question{font-size:16px;font-weight:700;color:var(--navy);line-height:1.75;margin-bottom:22px;min-height:52px;}
+.quiz-options{display:flex;flex-direction:column;gap:11px;margin-bottom:24px;}
+.quiz-opt{padding:13px 16px;border-radius:14px;border:2px solid var(--border);font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;transition:all .18s;text-align:left;background:#fff;display:flex;align-items:center;gap:12px;font-family:'Noto Sans Devanagari','Sora',sans-serif;}
+.quiz-opt:hover:not(:disabled){border-color:var(--blue);background:var(--blue-lt);color:var(--blue);}
+.quiz-opt:hover:not(:disabled) .opt-letter{background:var(--blue);color:#fff;}
+.quiz-opt.correct{border-color:var(--green);background:var(--green-lt);color:var(--green);}
+.quiz-opt.wrong{border-color:var(--red);background:var(--red-lt);color:var(--red);}
+.quiz-opt:disabled{cursor:default;}
+.opt-letter{width:30px;height:30px;min-width:30px;border-radius:9px;background:var(--blue-lt);color:var(--blue);font-size:12px;font-weight:700;display:grid;place-items:center;transition:all .18s;font-family:'Sora',sans-serif;flex-shrink:0;}
+.quiz-opt.correct .opt-letter{background:var(--green);color:#fff;}
+.quiz-opt.wrong .opt-letter{background:var(--red);color:#fff;}
+.quiz-explain{padding:14px 16px;border-radius:12px;background:var(--gold-lt);border-left:4px solid var(--gold);font-size:13px;line-height:1.8;color:#7a5500;margin-bottom:22px;display:none;}
+.quiz-actions{display:flex;justify-content:space-between;align-items:center;}
+#quizFeedback{font-size:14px;font-weight:700;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:50px;font-size:14px;font-weight:700;transition:all .22s;cursor:pointer;border:none;font-family:'Noto Sans Devanagari','Sora',sans-serif;text-decoration:none;}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 6px 20px rgba(17,85,204,.25);}
+.btn-blue:hover{background:var(--navy);transform:translateY(-2px);}
+.btn-green{background:var(--green);color:#fff;box-shadow:0 6px 20px rgba(26,143,60,.2);}
+.btn-green:hover{background:#156b2e;transform:translateY(-2px);}
+.btn-outline{background:transparent;color:var(--navy);border:2px solid var(--border);}
+.btn-outline:hover{border-color:var(--blue);color:var(--blue);}
+.quiz-result{text-align:center;padding:32px 28px;display:none;}
+.result-trophy{font-size:52px;margin-bottom:12px;}
+.score-big{font-size:56px;font-weight:800;color:var(--blue);line-height:1;font-family:'Sora',sans-serif;}
+.score-label{font-size:14px;color:var(--muted);margin-top:6px;margin-bottom:20px;}
+.result-msg{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:28px;line-height:1.6;}
+.result-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.share-block{margin-top:24px;padding:22px 24px;background:linear-gradient(135deg,var(--blue-lt),var(--green-lt));border-radius:18px;border:1px solid rgba(17,85,204,.15);}
+.share-title{font-size:15px;color:var(--navy);font-weight:700;margin-bottom:4px;text-align:center;}
+.share-subtitle{font-size:12px;color:var(--muted);text-align:center;margin-bottom:14px;line-height:1.6;}
+.share-msg-box{background:#fff;border-radius:12px;border:1px solid var(--border);padding:14px 16px;font-size:13px;color:var(--ink);line-height:1.8;margin-bottom:14px;white-space:pre-wrap;word-break:break-word;}
+.share-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.share-btn{display:inline-flex;align-items:center;gap:7px;padding:11px 20px;border-radius:50px;font-size:13px;font-weight:700;cursor:pointer;border:none;font-family:'Noto Sans Devanagari','Sora',sans-serif;text-decoration:none;transition:transform .18s,box-shadow .18s;}
+.share-btn:hover{transform:translateY(-2px);}
+.sb-copy{background:var(--navy);color:#fff;}
+.sb-wa{background:#25d366;color:#fff;box-shadow:0 4px 14px rgba(37,211,102,.3);}
+.sb-tg{background:#0088cc;color:#fff;box-shadow:0 4px 14px rgba(0,136,204,.3);}
+.copied-toast{display:none;text-align:center;font-size:12px;color:var(--green);font-weight:600;margin-top:10px;padding:8px;background:var(--green-lt);border-radius:8px;}
+.page-footer{margin-top:28px;text-align:center;padding:20px;background:#fff;border-radius:18px;border:1px solid var(--border);}
+.footer-brand{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px;font-family:'Sora',sans-serif;}
+.footer-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:8px;}
+.footer-links a{font-size:13px;color:var(--blue);font-weight:600;text-decoration:none;font-family:'Sora',sans-serif;}
+.footer-links a:hover{color:var(--navy);}
+.footer-note{font-size:11px;color:var(--muted);}
+@media(max-width:600px){
+  .banner-inner{padding:20px 16px 18px;}
+  .brand-name{font-size:15px;}.logo-mark{width:40px;height:40px;font-size:15px;}
+  .hdr-link{font-size:11px;padding:7px 12px;}
+  .quiz-widget-header{padding:18px 18px 0;}.quiz-body{padding:0 18px 20px;}
+  .quiz-question{font-size:15px;}.quiz-opt{font-size:13px;padding:11px 12px;}
+  .main{padding:22px 12px 40px;}
+  .share-btns{flex-direction:column;align-items:stretch;}.share-btn{justify-content:center;}
+  .result-actions{flex-direction:column;align-items:center;}
+}
+</style>
+</head>
+<body>
+
+<div class="top-banner">
+  <div class="banner-inner">
+    <div class="brand-row">
+      <div class="brand-left">
+        <div class="logo-mark">GW</div>
+        <div>
+          <div class="brand-name">Global <span>World</span> Academy</div>
+          <div class="brand-tagline">MPTET Expert Coaching — Varg 2 &amp; Varg 3</div>
+        </div>
+      </div>
+      <div class="brand-links">
+        <a class="hdr-link link-yt" href="https://www.youtube.com/channel/UCAUjpk6WmdECWyGj90yl9Qg" target="_blank">▶ YouTube</a>
+        <a class="hdr-link link-course" href="https://classplusapp.com/w/global-world-academy-xygeb" target="_blank">📚 Paid Courses</a>
+      </div>
+    </div>
+    <div class="quiz-meta-strip">
+      <div class="qm-title">🧠 <span id="quizTopicLabel">%%TOPIC%%</span></div>
+      <div class="quiz-date-pill" id="quizDateLabel">%%DATE%%</div>
+    </div>
+  </div>
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span class="ticker-item"><span class="dot">★</span> MPTET Varg 2 Science</span>
+      <span class="ticker-item"><span class="dot">★</span> MPTET Varg 3 PRE</span>
+      <span class="ticker-item"><span class="dot">★</span> मध्यप्रदेश शिक्षक भर्ती</span>
+      <span class="ticker-item"><span class="dot">★</span> विज्ञान पात्रता परीक्षा</span>
+      <span class="ticker-item"><span class="dot">★</span> निःशुल्क दैनिक प्रश्नोत्तरी</span>
+      <span class="ticker-item"><span class="dot">★</span> अध्यायवार MCQ</span>
+      <span class="ticker-item"><span class="dot">★</span> वीडियो क्लासेज + PDF नोट्स</span>
+      <span class="ticker-item"><span class="dot">★</span> MPTET Varg 2 Science</span>
+      <span class="ticker-item"><span class="dot">★</span> MPTET Varg 3 PRE</span>
+      <span class="ticker-item"><span class="dot">★</span> मध्यप्रदेश शिक्षक भर्ती</span>
+      <span class="ticker-item"><span class="dot">★</span> विज्ञान पात्रता परीक्षा</span>
+      <span class="ticker-item"><span class="dot">★</span> निःशुल्क दैनिक प्रश्नोत्तरी</span>
+      <span class="ticker-item"><span class="dot">★</span> अध्यायवार MCQ</span>
+      <span class="ticker-item"><span class="dot">★</span> वीडियो क्लासेज + PDF नोट्स</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="quiz-widget">
+    <div class="quiz-widget-header">
+      <div class="quiz-title-row">
+        <span class="quiz-icon" id="quizIcon">%%ICON%%</span>
+        <span class="quiz-name" id="quizName">%%TOPIC%%</span>
+      </div>
+      <span class="quiz-counter" id="quizCounter">1 / %%TOTAL%%</span>
+    </div>
+    <div class="quiz-progress-bar">
+      <div class="quiz-progress-fill" id="quizProgress" style="width:%%FIRST_PCT%%%;"></div>
+    </div>
+
+    <div class="quiz-body" id="quizMain">
+      <div class="quiz-question" id="quizQ">प्रश्न लोड हो रहा है...</div>
+      <div class="quiz-options" id="quizOpts"></div>
+      <div class="quiz-explain" id="quizExplain"></div>
+      <div class="quiz-actions">
+        <span id="quizFeedback"></span>
+        <button class="btn btn-blue" id="nextBtn" style="display:none;" onclick="nextQuestion()">अगला प्रश्न →</button>
+      </div>
+    </div>
+
+    <div class="quiz-result" id="quizResult">
+      <div class="result-trophy" id="resultTrophy">🏆</div>
+      <div class="score-big" id="scoreNum">0/%%TOTAL%%</div>
+      <div class="score-label">आपका स्कोर</div>
+      <div class="result-msg" id="resultMsg"></div>
+      <div class="result-actions">
+        <button class="btn btn-outline" onclick="restartQuiz()">🔄 दोबारा प्रयास करें</button>
+        <a href="https://classplusapp.com/w/global-world-academy-xygeb" target="_blank" class="btn btn-green">📚 पूरा कोर्स एनरोल करें →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="share-block" id="shareBlock" style="display:none;">
+    <div class="share-title">📢 अपने दोस्तों के साथ शेयर करें!</div>
+    <div class="share-subtitle">नीचे दिया गया संदेश कॉपी करें और WhatsApp / Telegram पर भेजें।</div>
+    <div class="share-msg-box" id="shareMsgBox"></div>
+    <div class="share-btns">
+      <button class="share-btn sb-copy" onclick="copyShareMsg()">📋 संदेश कॉपी करें</button>
+      <a class="share-btn sb-wa" id="shareWa" href="#" target="_blank">📱 WhatsApp</a>
+      <a class="share-btn sb-tg" id="shareTg" href="#" target="_blank">✈ Telegram</a>
+    </div>
+    <div class="copied-toast" id="copiedToast">✅ संदेश कॉपी हो गया!</div>
+  </div>
+
+  <div class="page-footer">
+    <div class="footer-brand">Global World Academy</div>
+    <div class="footer-links">
+      <a href="https://www.youtube.com/channel/UCAUjpk6WmdECWyGj90yl9Qg" target="_blank">▶ YouTube Channel</a>
+      <a href="https://classplusapp.com/w/global-world-academy-xygeb" target="_blank">📦 All Courses</a>
+      <a href="tel:+918770803840">📞 +91-8770803840</a>
+    </div>
+    <div class="footer-note">MPTET Varg 2 &amp; Varg 3 Expert Coaching · निःशुल्क दैनिक प्रश्नोत्तरी</div>
+  </div>
+</div>
+
+<script>
+const QUIZ_META = %%META_JSON%%;
+const QUESTIONS = %%QUESTIONS_JSON%%;
+
+let currentQ = 0, score = 0, answered = false;
+const letters = ['A','B','C','D'];
+
+function init() {
+  document.getElementById('quizTopicLabel').textContent = QUIZ_META.topic;
+  document.getElementById('quizDateLabel').textContent  = QUIZ_META.date;
+  document.getElementById('quizIcon').textContent       = QUIZ_META.icon;
+  document.getElementById('quizName').textContent       = QUIZ_META.topic;
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[currentQ], total = QUESTIONS.length;
+  document.getElementById('quizCounter').textContent  = (currentQ+1)+' / '+total;
+  document.getElementById('quizProgress').style.width = (((currentQ+1)/total)*100)+'%';
+  document.getElementById('quizQ').textContent        = q.q;
+  document.getElementById('quizExplain').style.display = 'none';
+  document.getElementById('nextBtn').style.display    = 'none';
+  document.getElementById('quizFeedback').textContent = '';
+  answered = false;
+  document.getElementById('quizOpts').innerHTML = q.opts.map((o,i)=>
+    '<button class="quiz-opt" onclick="selectOpt('+i+')" id="opt'+i+'">' +
+    '<span class="opt-letter">'+letters[i]+'</span>'+o+'</button>'
+  ).join('');
+}
+
+function selectOpt(idx) {
+  if (answered) return;
+  answered = true;
+  const q = QUESTIONS[currentQ];
+  const opts = document.querySelectorAll('.quiz-opt');
+  opts.forEach(o => o.disabled = true);
+  const fb = document.getElementById('quizFeedback');
+  if (idx === q.ans) {
+    opts[idx].classList.add('correct'); score++;
+    fb.textContent = '✅ सही जवाब!'; fb.style.color = 'var(--green)';
+  } else {
+    opts[idx].classList.add('wrong');
+    opts[q.ans].classList.add('correct');
+    fb.textContent = '❌ गलत जवाब!'; fb.style.color = 'var(--red)';
+  }
+  if (q.explain) {
+    document.getElementById('quizExplain').innerHTML = '<strong>💡 व्याख्या:</strong> ' + q.explain;
+    document.getElementById('quizExplain').style.display = 'block';
+  }
+  document.getElementById('nextBtn').style.display = 'inline-flex';
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ >= QUESTIONS.length) showResult();
+  else renderQuestion();
+}
+
+function showResult() {
+  document.getElementById('quizMain').style.display   = 'none';
+  document.getElementById('quizResult').style.display = 'block';
+  const total = QUESTIONS.length, pct = (score/total)*100;
+  document.getElementById('scoreNum').textContent      = score+'/'+total;
+  document.getElementById('quizProgress').style.width = '100%';
+  document.getElementById('quizCounter').textContent  = total+' / '+total;
+  let trophy='💪', msg='';
+  if      (pct===100) { trophy='🏆'; msg='शानदार! पूरे नंबर! आप परीक्षा के लिए पूरी तरह तैयार हैं!'; }
+  else if (pct>=80)   { trophy='🎉'; msg='बहुत बढ़िया! उत्कृष्ट प्रदर्शन — ऐसे ही पढ़ते रहें!'; }
+  else if (pct>=60)   { trophy='👍'; msg='अच्छा प्रयास! व्याख्याएँ ध्यान से पढ़ें और दोबारा कोशिश करें।'; }
+  else if (pct>=40)   { trophy='📚'; msg='पढ़ाई जारी रखें — हमारे कोर्स में एनरोल करें।'; }
+  else                { trophy='💪'; msg='हार मत मानो! हमारे कोर्स से विशेषज्ञ मार्गदर्शन लें।'; }
+  document.getElementById('resultTrophy').textContent = trophy;
+  document.getElementById('resultMsg').textContent    = msg;
+  const quizUrl = window.location.href;
+  const shareMsg =
+    '🧠 *'+QUIZ_META.topic+'*\n'+
+    '📅 दिनांक: '+QUIZ_META.date+'\n\n'+
+    'मैंने आज का Quiz दिया और स्कोर किया *'+score+'/'+total+'*! 🎯\n\n'+
+    '👉 आप भी दें — यहाँ क्लिक करें:\n'+quizUrl+'\n\n'+
+    '📺 YouTube Free Classes:\nyoutube.com/channel/UCAUjpk6WmdECWyGj90yl9Qg\n\n'+
+    '📦 Paid Courses:\nclassplusapp.com/w/global-world-academy-xygeb';
+  document.getElementById('shareMsgBox').textContent = shareMsg;
+  document.getElementById('shareWa').href = 'https://api.whatsapp.com/send?text='+encodeURIComponent(shareMsg);
+  document.getElementById('shareTg').href = 'https://t.me/share/url?url='+encodeURIComponent(quizUrl)+'&text='+encodeURIComponent('🧠 '+QUIZ_META.topic+' Quiz — '+QUIZ_META.date+'\n\nमैंने स्कोर किया '+score+'/'+total+'! आप भी दें 👇');
+  document.getElementById('shareBlock').style.display = 'block';
+  document.getElementById('shareBlock').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function copyShareMsg() {
+  const msg = document.getElementById('shareMsgBox').textContent;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(msg).then(showCopied).catch(()=>fallbackCopy(msg));
+  } else { fallbackCopy(msg); }
+}
+function fallbackCopy(msg) {
+  const ta = document.createElement('textarea');
+  ta.value = msg; ta.style.cssText='position:fixed;opacity:0;';
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try{document.execCommand('copy');showCopied();}catch(e){}
+  document.body.removeChild(ta);
+}
+function showCopied() {
+  const t = document.getElementById('copiedToast');
+  t.style.display='block'; setTimeout(()=>{t.style.display='none';},3500);
+}
+function restartQuiz() {
+  currentQ=0;score=0;answered=false;
+  document.getElementById('quizResult').style.display='none';
+  document.getElementById('quizMain').style.display='block';
+  document.getElementById('shareBlock').style.display='none';
+  renderQuestion();
+}
+
+init();
+</script>
+</body>
+</html>
